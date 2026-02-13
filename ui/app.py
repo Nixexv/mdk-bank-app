@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import platform
 import tkinter as tk
 import webbrowser
 from tkinter import font as tkfont
@@ -32,15 +33,15 @@ class BankApp(tk.Tk):
             input="#E3E2ED",
         )
         self.fonts = Fonts(
-            family="Poppins",
-            title=20,
-            subtitle=16,
-            label=24,
-            medium=20,
-            small=15,
-            icon=34,
-            card_title=18,
-            card_subtitle=14,
+            family="Arial",
+            title=14,
+            subtitle=12,
+            label=20,
+            medium=14,
+            small=10,
+            icon=26,
+            card_title=14,
+            card_subtitle=10,
         )
 
         self._init_fonts()
@@ -79,17 +80,19 @@ class BankApp(tk.Tk):
         try:
             tkfont.Font(family=self.fonts.family, size=12)
         except tk.TclError:
-            # Fallback to default fonts if Poppins is not installed.
+            # Fallback if Arial is not installed.
+            system = platform.system()
+            fallback_family = "Segoe UI" if system == "Windows" else "Helvetica"
             self.fonts = Fonts(
-                family="Helvetica",
-                title=20,
-                subtitle=16,
-                label=24,
-                medium=20,
-                small=15,
-                icon=34,
-                card_title=18,
-                card_subtitle=14,
+                family=fallback_family,
+                title=18,
+                subtitle=14,
+                label=22,
+                medium=18,
+                small=14,
+                icon=30,
+                card_title=16,
+                card_subtitle=13,
             )
 
     def _place_entries(self) -> None:
