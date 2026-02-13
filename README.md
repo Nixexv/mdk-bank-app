@@ -35,6 +35,7 @@ Windows (PowerShell, админ)
 $src = "C:\path\to\fonts"
 
 # Установить все ttf
+```bash
 Get-ChildItem $src -Filter *.ttf | ForEach-Object {
   $font = $_.FullName
   $dest = "$env:WINDIR\Fonts\$($_.Name)"
@@ -42,23 +43,28 @@ Get-ChildItem $src -Filter *.ttf | ForEach-Object {
   New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" `
     -Name $_.Name -PropertyType String -Value $_.Name -Force | Out-Null
 }
+```
 macOS (Terminal)
-
+```bash
 # Для всех пользователей (нужен sudo)
 sudo mkdir -p /Library/Fonts/Poppins
 sudo cp /path/to/fonts/*.ttf /Library/Fonts/Poppins/
+```
 Или только для текущего пользователя:
-
+```bash
 mkdir -p "$HOME/Library/Fonts"
 cp /path/to/fonts/*.ttf "$HOME/Library/Fonts/"
+```
 Linux
 Ubuntu/Debian:
-
+```bash
 mkdir -p ~/.local/share/fonts
 cp /path/to/fonts/*.ttf ~/.local/share/fonts/
 fc-cache -f -v
+```
 Системно (нужен sudo):
-
+```bash
 sudo mkdir -p /usr/local/share/fonts
 sudo cp /path/to/fonts/*.ttf /usr/local/share/fonts/
 sudo fc-cache -f -v
+```
