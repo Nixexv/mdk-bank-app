@@ -16,8 +16,6 @@ pip install pillow
 
 ## Запуск
 
-Из папки `МДК/bank-app2.0/main`:
-
 ```bash
 python main.py
 ```
